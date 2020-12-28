@@ -2,10 +2,13 @@ package worker
 
 //连接错误号
 const errorConnect = 1
+
 //写入错误号
 const errorWrite = 2
+
 //读取
 const errorRead = 3
+
 //其他
 const errorOther = 0
 
@@ -54,7 +57,6 @@ func (e workerErrorRead) Error() string {
 	return e.Err.Error()
 }
 
-
 func getWorkerType(err error) int {
 	switch err.(type) {
 	case workerErrorConnect:
@@ -67,14 +69,14 @@ func getWorkerType(err error) int {
 	return errorOther
 }
 
-func IsErrorConnect(err error)bool{
+func IsErrorConnect(err error) bool {
 	return getWorkerType(err) == errorConnect
 }
 
-func IsErrorWrite(err error)bool{
+func IsErrorWrite(err error) bool {
 	return getWorkerType(err) == errorWrite
 }
 
-func IsErrorRead(err error)bool{
+func IsErrorRead(err error) bool {
 	return getWorkerType(err) == errorRead
 }

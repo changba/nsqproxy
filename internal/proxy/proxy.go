@@ -3,11 +3,11 @@ package proxy
 import (
 	"errors"
 	"fmt"
-	"github.com/nsqio/go-nsq"
 	"github.com/ChangbaServer/nsqproxy/config"
 	"github.com/ChangbaServer/nsqproxy/internal/model"
 	"github.com/ChangbaServer/nsqproxy/internal/module/logger"
 	"github.com/ChangbaServer/nsqproxy/internal/module/tool"
+	"github.com/nsqio/go-nsq"
 	"strconv"
 	"time"
 )
@@ -33,7 +33,6 @@ func NewProxy() *Proxy {
 		panic("load config file failed. err: " + err.Error())
 	}
 	if len(consumeConfigList) == 0 {
-		fmt.Println("consume config is empty.")
 		logger.Warningf("consume config is empty.")
 	}
 	return &Proxy{
@@ -56,7 +55,7 @@ func (p *Proxy) run() {
 	//立即启动Proxy
 	p.start()
 	//定时器。指定时间运行一次
-	if config.SystemConfig.UpdateConfigInterval <= 0{
+	if config.SystemConfig.UpdateConfigInterval <= 0 {
 		return
 	}
 	ticker := time.NewTicker(config.SystemConfig.UpdateConfigInterval)
@@ -82,7 +81,7 @@ func (p *Proxy) start() bool {
 	//状态初始化
 	for k, consumeConfig := range p.consumeConfigList {
 		//启动状态监测
-		if consumeConfig.StatusIsSuccess(){
+		if consumeConfig.StatusIsSuccess() {
 			continue
 		}
 		p.consumeConfigList[k].SetStatusWait()
@@ -110,7 +109,7 @@ func (p *Proxy) startConsume(consumeConfig *model.ConsumeConfig) (*nsq.Consumer,
 	}
 	//把本系统的logLevel映射成go-nsq项目的等级
 	var nsqLogLevel nsq.LogLevel
-	switch config.SystemConfig.SubLogger.Level{
+	switch config.SystemConfig.SubLogger.Level {
 	case logger.LOG_DEBUG:
 		nsqLogLevel = nsq.LogLevelDebug
 	case logger.LOG_INFO:
@@ -143,7 +142,7 @@ func (p *Proxy) updateConsumeConfigList() bool {
 	//获取最新的配置
 	consumeConfigList, err := model.GetAvailableConsumeList()
 	if err != nil {
-		logger.Errorf("nsqproxy get consume config failed. error: "+err.Error())
+		logger.Errorf("nsqproxy get consume config failed. error: " + err.Error())
 		return false
 	}
 	// 更新消费者配置

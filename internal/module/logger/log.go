@@ -11,7 +11,7 @@ import (
 type LogLevel int
 
 const (
-	LOG_DEBUG LogLevel =  iota
+	LOG_DEBUG LogLevel = iota
 	LOG_INFO
 	LOG_WARNING
 	LOG_ERROR
@@ -87,15 +87,15 @@ func NewLogger(fileName string, prefix string, level string) *Logger {
 	}
 }
 
-func (l *Logger) WithLevelf(lev LogLevel, format string, v ...interface{}){
-	if l == nil || lev < l.Level{
+func (l *Logger) WithLevelf(lev LogLevel, format string, v ...interface{}) {
+	if l == nil || lev < l.Level {
 		return
 	}
-	format = "["+lev.String()+"]" + " " + format
+	format = "[" + lev.String() + "]" + " " + format
 	l.logf(format, v...)
 }
 
-func (l *Logger) logf(format string, v ...interface{}){
+func (l *Logger) logf(format string, v ...interface{}) {
 	l.Printf(format, v...)
 }
 

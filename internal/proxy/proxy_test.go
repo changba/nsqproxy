@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func init(){
+func init() {
 	testing.Init()
 	config.NewSystemConfig()
 	model.NewDB("0.0.0.0", "3306", "root", "", "nsqproxy")
@@ -38,7 +38,7 @@ func TestRun(t *testing.T) {
 	}
 	p.Stop()
 	for _, consumeConfig := range p.consumeConfigList {
-		if !consumeConfig.StatusIsClose(){
+		if !consumeConfig.StatusIsClose() {
 			t.Fatal(consumeConfig.Topic + " consume status is not closed")
 		}
 	}

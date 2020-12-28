@@ -13,7 +13,6 @@ const NsqproxyVersion = "1.0.0"
 const RoleMaster = "master"
 const RoleBackup = "backup"
 
-
 var SystemConfig = &systemConfig{}
 
 type systemConfig struct {
@@ -28,7 +27,7 @@ type systemConfig struct {
 
 	//-----日志相关-----
 	//订阅的消息日志logger
-	SubLogger      *logger.Logger
+	SubLogger *logger.Logger
 
 	//-----消费者相关-----
 	UpdateConfigInterval time.Duration
@@ -70,19 +69,19 @@ func NewSystemConfig() {
 	flag.Parse()
 	//本机相关
 	SystemConfig.HttpAddr = *httpAddr
-	if len(SystemConfig.HttpAddr) <= 0{
+	if len(SystemConfig.HttpAddr) <= 0 {
 		panic("httpAddr参数缺失")
 	}
 	SystemConfig.MasterAddr = *masterAddr
 	//nsqlookupd相关
 	SystemConfig.NsqlookupdHttpAddrList = strings.Split(*nsqlookupdHTTP, ",")
-	if len(SystemConfig.NsqlookupdHttpAddrList) <= 0{
+	if len(SystemConfig.NsqlookupdHttpAddrList) <= 0 {
 		panic("nsqlookupdHTTP 缺失")
 	}
 	//日志相关
 	logLevelLower := strings.ToLower(*logLevel)
 	logLevelList := map[string]struct{}{"debug": struct{}{}, "info": struct{}{}, "warning": struct{}{}, "error": struct{}{}, "fatal": struct{}{}}
-	if _, ok := logLevelList[logLevelLower]; !ok{
+	if _, ok := logLevelList[logLevelLower]; !ok {
 		panic("logLevel可选值为debug、info、warning、error、fatal")
 	}
 	logger.Init(*logPath, logLevelLower)

@@ -63,7 +63,7 @@ func (ConsumeConfig) TableName() string {
 }
 
 //定义结构体，然后让ORM来帮你建表，这个结构体的标签我觉得写起来贼麻烦，还不如直接来建表语句。
-func (ConsumeConfig) CreateTable()error{
+func (ConsumeConfig) CreateTable() error {
 	sql := "CREATE TABLE IF NOT EXISTS `nsqproxy_consume_config` (" +
 		"`id` int(11) unsigned NOT NULL AUTO_INCREMENT," +
 		"`topic` varchar(100) NOT NULL DEFAULT '' COMMENT 'topic名'," +
@@ -88,7 +88,7 @@ func (ConsumeConfig) CreateTable()error{
 
 //两份配置是否相等
 func (c ConsumeConfig) IsEqual(newConsume ConsumeConfig) bool {
-	if c.Id != newConsume.Id || c.Topic != newConsume.Topic || c.Channel != newConsume.Channel || c.Description != newConsume.Description || c.Owner != newConsume.Owner{
+	if c.Id != newConsume.Id || c.Topic != newConsume.Topic || c.Channel != newConsume.Channel || c.Description != newConsume.Description || c.Owner != newConsume.Owner {
 		return false
 	}
 	if c.MonitorThreshold != newConsume.MonitorThreshold || c.HandleNum != newConsume.HandleNum || c.MaxInFlight != newConsume.MaxInFlight || c.IsRequeue != newConsume.IsRequeue {
@@ -101,49 +101,48 @@ func (c ConsumeConfig) IsEqual(newConsume ConsumeConfig) bool {
 		return false
 	}
 	for index, ServerMap := range c.ServerList {
-		if !ServerMap.IsEqual(newConsume.ServerList[index]){
+		if !ServerMap.IsEqual(newConsume.ServerList[index]) {
 			return false
 		}
 	}
 	return true
 }
 
-func (c ConsumeConfig) GetStatus()int32{
+func (c ConsumeConfig) GetStatus() int32 {
 	return atomic.LoadInt32(&c.status)
 }
 
-func (c *ConsumeConfig) SetStatusWait(){
+func (c *ConsumeConfig) SetStatusWait() {
 	atomic.StoreInt32(&c.status, consumeConfigStatusWait)
 }
 
-func (c ConsumeConfig) StatusIsSuccess()bool{
+func (c ConsumeConfig) StatusIsSuccess() bool {
 	return c.GetStatus() == consumeConfigStatusSuccess
 }
 
-func (c *ConsumeConfig) SetStatusSuccess(){
+func (c *ConsumeConfig) SetStatusSuccess() {
 	atomic.StoreInt32(&c.status, consumeConfigStatusSuccess)
 }
 
-func (c *ConsumeConfig) SetStatusFailed(){
+func (c *ConsumeConfig) SetStatusFailed() {
 	atomic.StoreInt32(&c.status, consumeConfigStatusFailed)
 }
 
-func (c ConsumeConfig) StatusIsClose()bool{
+func (c ConsumeConfig) StatusIsClose() bool {
 	return c.GetStatus() == consumeConfigStatusClosed
 }
 
-func (c *ConsumeConfig) SetStatusClosed(){
+func (c *ConsumeConfig) SetStatusClosed() {
 	atomic.StoreInt32(&c.status, consumeConfigStatusClosed)
 }
 
-func (c *ConsumeConfig) SetConsumerUniqueId(consumerUniqueId [16]byte){
+func (c *ConsumeConfig) SetConsumerUniqueId(consumerUniqueId [16]byte) {
 	c.consumerUniqueId = consumerUniqueId
 }
 
-func (c *ConsumeConfig) GetConsumerUniqueId()[16]byte{
+func (c *ConsumeConfig) GetConsumerUniqueId() [16]byte {
 	return c.consumerUniqueId
 }
-
 
 //把数组形式的配置列表转换成map，key是id
 func FormatConsumeConfigListForMap(consumeConfigList []ConsumeConfig) map[int]ConsumeConfig {
@@ -154,65 +153,64 @@ func FormatConsumeConfigListForMap(consumeConfigList []ConsumeConfig) map[int]Co
 	return consumeConfigMap
 }
 
-
-func (c *ConsumeConfig) Create()(int, error){
+func (c *ConsumeConfig) Create() (int, error) {
 	result := db.Create(c)
-	if result.Error != nil{
+	if result.Error != nil {
 		return 0, result.Error
-	}else if result.RowsAffected <= 0{
+	} else if result.RowsAffected <= 0 {
 		return 0, errors.New("RowsAffected is zero")
-	}else if c.Id <= 0{
+	} else if c.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	return c.Id, nil
 }
 
-func (c *ConsumeConfig) Delete()(int64, error){
-	if c.Id <= 0{
+func (c *ConsumeConfig) Delete() (int64, error) {
+	if c.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	result := db.Delete(c, c.Id)
 	return result.RowsAffected, result.Error
 }
 
-func (c *ConsumeConfig) Update()(int64, error){
-	if c.Id <= 0{
+func (c *ConsumeConfig) Update() (int64, error) {
+	if c.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	result := db.Select("Id", "Topic", "Channel", "Description", "Owner", "MonitorThreshold", "HandleNum", "MaxInFlight", "IsRequeue", "TimeoutDial", "TimeoutRead", "TimeoutWrite", "Invalid", "UpdatedAt").Updates(c)
-	if result.Error != nil{
+	if result.Error != nil {
 		return 0, result.Error
 	}
 	return result.RowsAffected, nil
 }
 
-func (c *ConsumeConfig) Get()(int64, error){
-	if c.Id <= 0{
+func (c *ConsumeConfig) Get() (int64, error) {
+	if c.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	result := db.First(c)
 	return result.RowsAffected, result.Error
 }
 
-func (c *ConsumeConfig) Page(topic string, page int)(PageResult, error){
+func (c *ConsumeConfig) Page(topic string, page int) (PageResult, error) {
 	var cList []ConsumeConfig
 	//where部分
 	whereList := make([]string, 0)
-	if len(topic) > 0{
-		whereList = append(whereList, " topic LIKE '%" + topic + "%'")
+	if len(topic) > 0 {
+		whereList = append(whereList, " topic LIKE '%"+topic+"%'")
 	}
 	d := db.Table(c.TableName()).Where(strings.Join(whereList, " AND "))
 	//count部分
 	var total int64
 	result := d.Count(&total)
-	if result.Error != nil || result.RowsAffected != 1{
+	if result.Error != nil || result.RowsAffected != 1 {
 		total = 0
 	}
 	//page部分
-	if page <= 0{
+	if page <= 0 {
 		page = 1
 	}
-	result = d.Offset((page-1)*20).Limit(20).Find(&cList)
+	result = d.Offset((page - 1) * 20).Limit(20).Find(&cList)
 	pageRet := PageResult{
 		Total:  total,
 		Page:   page,
@@ -221,31 +219,31 @@ func (c *ConsumeConfig) Page(topic string, page int)(PageResult, error){
 	return pageRet, result.Error
 }
 
-func (c *ConsumeConfig) WorkList()error{
+func (c *ConsumeConfig) WorkList() error {
 	//获取消费者配置
 	n, err := c.Get()
-	if err != nil && !IsErrRecordNotFound(err){
+	if err != nil && !IsErrRecordNotFound(err) {
 		return err
 	}
-	if n == 0 || c.Id <= 0 || IsErrRecordNotFound(err){
+	if n == 0 || c.Id <= 0 || IsErrRecordNotFound(err) {
 		return nil
 	}
 	//获取map列表
 	csMapList, err := (&ConsumeServerMap{}).AllByConsumeid(c.Id)
-	if err != nil{
+	if err != nil {
 		return err
 	}
-	if len(csMapList) <= 0{
+	if len(csMapList) <= 0 {
 		return nil
 	}
-	for k, csMap := range csMapList{
-		if csMap.Serverid < 0{
+	for k, csMap := range csMapList {
+		if csMap.Serverid < 0 {
 			continue
 		}
 		work := WorkServer{}
 		work.Id = csMap.Serverid
 		n, err := work.Get()
-		if err != nil || n == 0 || work.Id <= 0{
+		if err != nil || n == 0 || work.Id <= 0 {
 			continue
 		}
 		csMapList[k].WorkServer = work

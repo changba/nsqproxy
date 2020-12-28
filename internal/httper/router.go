@@ -8,11 +8,11 @@ import (
 // 启动HTTP
 func (h *Httper) router() {
 	//获取状态
-	http.HandleFunc("/status", func (w http.ResponseWriter, r *http.Request){
+	http.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
 		Success(w, "ok")
 	})
 	//获取角色
-	http.HandleFunc("/getRole", func (w http.ResponseWriter, r *http.Request){
+	http.HandleFunc("/getRole", func(w http.ResponseWriter, r *http.Request) {
 		Success(w, config.SystemConfig.Role)
 	})
 

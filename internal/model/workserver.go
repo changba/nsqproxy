@@ -13,32 +13,32 @@ const workserverStatusAvailable = 1
 const workserverStatusUnavailable = 0
 
 type WorkServer struct {
-	Id    int   `json:"id" gorm:"primaryKey"`
+	Id int `json:"id" gorm:"primaryKey"`
 	//地址，IP:PORT
-	Addr        string `json:"addr"`
+	Addr string `json:"addr"`
 	//协议，如HTTP、FastCGI、CBNSQ
-	Protocol    string `json:"protocol"`
+	Protocol string `json:"protocol"`
 	//扩展字段
-	Extra		string `json:"extra"`
+	Extra string `json:"extra"`
 	//描述
 	Description string `json:"description"`
 	//责任人
-	Owner       string `json:"owner"`
+	Owner string `json:"owner"`
 	//是否有效
-	Invalid     int `json:"invalid"`
+	Invalid int `json:"invalid"`
 	//创建时间
 	CreatedAt time.Time `json:"createdAt"`
 	//更新时间
 	UpdatedAt time.Time `json:"updatedAt"`
 
-	status      int32 `gorm:"-"`
+	status int32 `gorm:"-"`
 }
 
 func (WorkServer) TableName() string {
 	return "nsqproxy_work_server"
 }
 
-func (WorkServer) CreateTable()error{
+func (WorkServer) CreateTable() error {
 	sql := "CREATE TABLE IF NOT EXISTS `nsqproxy_work_server` (" +
 		"`id` int(11) unsigned NOT NULL AUTO_INCREMENT," +
 		"`addr` varchar(255) NOT NULL DEFAULT '' COMMENT '地址'," +
@@ -57,7 +57,7 @@ func (WorkServer) CreateTable()error{
 
 //两份配置是否相等
 func (w WorkServer) IsEqual(newWork WorkServer) bool {
-	if w.Id != newWork.Id || w.Addr != newWork.Addr  || w.Protocol != newWork.Protocol || w.Extra != newWork.Extra || w.Description != newWork.Description {
+	if w.Id != newWork.Id || w.Addr != newWork.Addr || w.Protocol != newWork.Protocol || w.Extra != newWork.Extra || w.Description != newWork.Description {
 		return false
 	}
 	if w.Owner != newWork.Owner || w.Invalid != newWork.Invalid {
@@ -66,72 +66,71 @@ func (w WorkServer) IsEqual(newWork WorkServer) bool {
 	return true
 }
 
-func (w WorkServer) GetStatus(){
+func (w WorkServer) GetStatus() {
 	atomic.LoadInt32(&w.status)
 }
 
-func (w *WorkServer) SetStatusAvailable(){
+func (w *WorkServer) SetStatusAvailable() {
 	atomic.StoreInt32(&w.status, workserverStatusAvailable)
 }
 
-func (w *WorkServer) SetStatusUnAvailable(){
+func (w *WorkServer) SetStatusUnAvailable() {
 	atomic.StoreInt32(&w.status, workserverStatusUnavailable)
 }
 
-
-func (w *WorkServer) Create()(int, error){
+func (w *WorkServer) Create() (int, error) {
 	result := db.Create(w)
-	if result.Error != nil{
+	if result.Error != nil {
 		return 0, result.Error
-	}else if result.RowsAffected <= 0{
+	} else if result.RowsAffected <= 0 {
 		return 0, errors.New("RowsAffected is zero")
-	}else if w.Id <= 0{
+	} else if w.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	return w.Id, nil
 }
 
-func (w *WorkServer) Delete()(int64, error){
-	if w.Id <= 0{
+func (w *WorkServer) Delete() (int64, error) {
+	if w.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	result := db.Delete(w, w.Id)
 	return result.RowsAffected, result.Error
 }
 
-func (w *WorkServer) Update()(int64, error){
-	if w.Id <= 0{
+func (w *WorkServer) Update() (int64, error) {
+	if w.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	result := db.Select("Id", "Addr", "Protocol", "Extra", "Description", "Owner", "Invalid", "UpdatedAt").Updates(w)
-	if result.Error != nil{
+	if result.Error != nil {
 		return 0, result.Error
 	}
 	return result.RowsAffected, nil
 }
 
-func (w *WorkServer) Get()(int64, error){
-	if w.Id <= 0{
+func (w *WorkServer) Get() (int64, error) {
+	if w.Id <= 0 {
 		return 0, errors.New("primaryKey is zero")
 	}
 	result := db.First(w)
 	return result.RowsAffected, result.Error
 }
 
-func (w *WorkServer) Page(page int)(PageResult, error){
+func (w *WorkServer) Page(page int) (PageResult, error) {
 	var wList []WorkServer
 	d := db.Table(w.TableName())
 	//count部分
 	var total int64
 	result := d.Count(&total)
-	if result.Error != nil || result.RowsAffected != 1{
+	if result.Error != nil || result.RowsAffected != 1 {
 		total = 0
 	}
 	//page部分
-	if page <= 0{
+	if page <= 0 {
 		page = 1
 	}
-	result = d.Offset((page-1)*20).Limit(20).Find(&wList)
+	result = d.Offset((page - 1) * 20).Limit(20).Find(&wList)
 	pageRet := PageResult{
 		Total:  total,
 		Page:   page,
@@ -140,7 +139,7 @@ func (w *WorkServer) Page(page int)(PageResult, error){
 	return pageRet, result.Error
 }
 
-func (w *WorkServer) All()([]WorkServer, error){
+func (w *WorkServer) All() ([]WorkServer, error) {
 	var wList []WorkServer
 	result := db.Find(&wList)
 	return wList, result.Error

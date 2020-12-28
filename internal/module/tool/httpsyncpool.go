@@ -10,11 +10,11 @@ import (
 
 //用sync.pool管理http client
 //用sync.Pool和不用，QPS提升10%，CPU下降50%
-type HttpClientPool struct{
+type HttpClientPool struct {
 	pool sync.Pool
 }
 
-func NewHttpClientPool()*HttpClientPool {
+func NewHttpClientPool() *HttpClientPool {
 	return &HttpClientPool{
 		pool: sync.Pool{
 			New: func() interface{} {
@@ -24,17 +24,17 @@ func NewHttpClientPool()*HttpClientPool {
 	}
 }
 
-func (h *HttpClientPool)GetClient()*http.Client{
+func (h *HttpClientPool) GetClient() *http.Client {
 	return h.pool.Get().(*http.Client)
 }
 
-func (h *HttpClientPool)PutClient(client *http.Client){
+func (h *HttpClientPool) PutClient(client *http.Client) {
 	h.pool.Put(client)
 }
 
-func(h *HttpClientPool)Dial(req *http.Request)(*http.Response, error){
+func (h *HttpClientPool) Dial(req *http.Request) (*http.Response, error) {
 	client := h.GetClient()
-	if client == nil{
+	if client == nil {
 		return nil, errors.New("HttpClientPool.GetClient is nil")
 	}
 	defer h.PutClient(client)
@@ -42,7 +42,7 @@ func(h *HttpClientPool)Dial(req *http.Request)(*http.Response, error){
 }
 
 //创建一个http client
-func NewHttpClient()*http.Client{
+func NewHttpClient() *http.Client {
 	//参数是复制的DefaultClient，只是改了MaxIdleConns和MaxIdleConnsPerHost
 	return &http.Client{
 		Transport: &http.Transport{

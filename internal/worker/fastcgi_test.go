@@ -15,10 +15,10 @@ func TestFastCGIWorker_Send(t *testing.T) {
 	body := []byte("Hello world")
 	message := nsq.NewMessage(messageId, body)
 	res, err := handler.Send(message)
-	if err != nil{
+	if err != nil {
 		t.Fatalf("send error: %s", err.Error())
 	}
-	if string(res) != "200 ok"{
+	if string(res) != "200 ok" {
 		t.Fatalf("response body is not match")
 	}
 }

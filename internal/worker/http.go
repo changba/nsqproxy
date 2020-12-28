@@ -11,10 +11,10 @@ import (
 
 type HTTPWorker struct {
 	workerConfig workerConfig
-	clientPool *tool.HttpClientPool
+	clientPool   *tool.HttpClientPool
 }
 
-func (w *HTTPWorker) new(wc workerConfig){
+func (w *HTTPWorker) new(wc workerConfig) {
 	w.workerConfig = wc
 	w.clientPool = tool.NewHttpClientPool()
 }
@@ -24,7 +24,7 @@ func (w *HTTPWorker) Send(message *nsq.Message) ([]byte, error) {
 	//构造HTTP请求
 	//values := url.Values{}
 	//values.Set("param", string(message.Body))
-	req, err := http.NewRequest("POST", "http://" + w.workerConfig.addr + "/" + w.workerConfig.extra, strings.NewReader(string(message.Body)))
+	req, err := http.NewRequest("POST", "http://"+w.workerConfig.addr+"/"+w.workerConfig.extra, strings.NewReader(string(message.Body)))
 	if err != nil {
 		return nil, err
 	}
@@ -34,7 +34,7 @@ func (w *HTTPWorker) Send(message *nsq.Message) ([]byte, error) {
 	req.Header.Set("CONTENT-TYPE", "application/x-www-form-urlencoded")
 	//获取http.Client
 	client := w.clientPool.GetClient()
-	if client == nil{
+	if client == nil {
 		return nil, errors.New("HttpClientPool.GetClient is nil")
 	}
 	defer w.clientPool.PutClient(client)

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func init(){
+func init() {
 	model.NewDB("0.0.0.0", "3306", "root", "", "nsqproxy")
 }
 
@@ -36,7 +36,7 @@ func TestLoadBalanceLoop_new(t *testing.T) {
 	p := NewProxy()
 	loop := &loadBalanceLoop{}
 	loop.new(p.consumeConfigList[0].ServerList)
-	if len(loop.list) <= 0{
+	if len(loop.list) <= 0 {
 		t.Fatalf("loop.list is empty")
 	}
 	//检验capacity是否相等
@@ -47,14 +47,14 @@ func TestLoadBalanceLoop_new(t *testing.T) {
 		capacity += v.Weight * 100
 		list[v.Id] = v.Weight * 100
 	}
-	if loop.capacity != capacity{
+	if loop.capacity != capacity {
 		t.Fatalf("loop.capacity is not match. action:%d expect:%d", loop.capacity, capacity)
 	}
 	count := make(map[int]int, 0)
 	for _, v := range loop.list {
 		count[v.Id] = v.Weight * 100
 	}
-	if len(count) != len(list){
+	if len(count) != len(list) {
 		t.Fatalf("loop.list length does not match. action:%d expect:%d", len(count), len(list))
 	}
 	for k, v := range list {

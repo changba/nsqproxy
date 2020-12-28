@@ -10,9 +10,9 @@ import (
 
 //主库返回的响应值
 type masterResponse struct {
-	Code int `json:"code"`
-	Message string `json:"msg"`
-	Result interface{} `json:"result"`
+	Code    int         `json:"code"`
+	Message string      `json:"msg"`
+	Result  interface{} `json:"result"`
 }
 
 //向主发送心跳，主观判断主下线后，备才会启动，否则在本函数阻塞
@@ -42,7 +42,7 @@ func Backup(masterAddr string) {
 			goto SLEEP
 		}
 		body, err = ioutil.ReadAll(resp.Body)
-		if err != nil{
+		if err != nil {
 			interval = failedInterval
 			failedNum++
 			logger.Errorf("the backup read response of master error: %s", err.Error())
@@ -50,7 +50,7 @@ func Backup(masterAddr string) {
 			goto SLEEP
 		}
 		err = json.Unmarshal(body, &r)
-		if err != nil{
+		if err != nil {
 			interval = failedInterval
 			failedNum++
 			logger.Errorf("the backup change response of master to json error: %s", err.Error())
@@ -58,7 +58,7 @@ func Backup(masterAddr string) {
 			goto SLEEP
 		}
 		_ = resp.Body.Close()
-		if r.Code != 200 || r.Result != "ok"{
+		if r.Code != 200 || r.Result != "ok" {
 			interval = failedInterval
 			failedNum++
 			logger.Errorf("the backup read response of master failed. action:%d %s expect:%d %s", r.Code, r.Result, 200, "ok")
@@ -69,8 +69,8 @@ func Backup(masterAddr string) {
 		interval = successInterval
 		failedNum = 0
 
-SLEEP:
-		if failedNum >= 5{
+	SLEEP:
+		if failedNum >= 5 {
 			logger.Errorf("the backup will run.")
 			break
 		}

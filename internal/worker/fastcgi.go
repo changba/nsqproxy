@@ -2,9 +2,9 @@ package worker
 
 import (
 	"bytes"
-	"github.com/nsqio/go-nsq"
 	"github.com/ChangbaServer/nsqproxy/config"
 	"github.com/ChangbaServer/nsqproxy/internal/module/fastcgi"
+	"github.com/nsqio/go-nsq"
 	"io/ioutil"
 )
 
@@ -12,7 +12,7 @@ type FastCGIWorker struct {
 	workerConfig workerConfig
 }
 
-func (w *FastCGIWorker) new(workerConfig workerConfig){
+func (w *FastCGIWorker) new(workerConfig workerConfig) {
 	w.workerConfig = workerConfig
 }
 

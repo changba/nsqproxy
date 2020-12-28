@@ -22,7 +22,7 @@ type CBNSQWorker struct {
 	workerConfig workerConfig
 }
 
-func (w *CBNSQWorker) new(wc workerConfig){
+func (w *CBNSQWorker) new(wc workerConfig) {
 	w.workerConfig = wc
 }
 
@@ -39,7 +39,7 @@ func (w *CBNSQWorker) Send(message *nsq.Message) ([]byte, error) {
 	//给worker发送数据
 	data := w.encode(message)
 	n, err := conn.Write(data)
-	if n == 0{
+	if n == 0 {
 		return nil, newWorkerErrorWrite(errors.New("n of conn.Write is 0"))
 	}
 	if err != nil {
@@ -61,5 +61,5 @@ func (w *CBNSQWorker) Send(message *nsq.Message) ([]byte, error) {
 // msg的长度(8字节，0填充） + messageId（16字节） + msg正文
 func (w *CBNSQWorker) encode(message *nsq.Message) []byte {
 	header := fmt.Sprintf("%08s", strconv.Itoa(len(message.Body)))
-	return bytes.Join([]([]byte){[]byte(header), message.ID[:], message.Body,}, []byte(""))
+	return bytes.Join([]([]byte){[]byte(header), message.ID[:], message.Body}, []byte(""))
 }

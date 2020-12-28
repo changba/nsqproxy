@@ -10,15 +10,17 @@ import (
 //和Worker的通信协议
 //HTTP协议
 const protocolHttp = "http"
+
 //FastCGI协议
 const protocolFastCGI = "fastcgi"
+
 //自定义CBNSQ协议（唱吧NSQ）
 const protocolCBNSQ = "cbnsq"
 
 type workerConfig struct {
 	addr         string
-	protocol	 string //小写
-	extra		 string
+	protocol     string //小写
+	extra        string
 	timeoutDial  time.Duration
 	timeoutWrite time.Duration
 	timeoutRead  time.Duration
@@ -27,8 +29,8 @@ type workerConfig struct {
 func newWorkerConfig(addr, protocol, extra string, timeoutDial, timeoutWrite, timeoutRead time.Duration) workerConfig {
 	return workerConfig{
 		addr:         addr,
-		protocol:	  strings.ToLower(protocol),
-		extra:		  extra,
+		protocol:     strings.ToLower(protocol),
+		extra:        extra,
 		timeoutDial:  timeoutDial,
 		timeoutWrite: timeoutWrite,
 		timeoutRead:  timeoutRead,

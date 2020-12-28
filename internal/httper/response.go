@@ -17,25 +17,25 @@ const HttpCodeBadGateway = 502
 const HttpCodeServiceUnavailable = 503
 
 type resp struct {
-	w http.ResponseWriter
-	Code int `json:"code"`
-	Message string `json:"msg"`
-	Result interface{} `json:"result"`
+	w       http.ResponseWriter
+	Code    int         `json:"code"`
+	Message string      `json:"msg"`
+	Result  interface{} `json:"result"`
 }
 
-func Success(w http.ResponseWriter, result interface{}){
+func Success(w http.ResponseWriter, result interface{}) {
 	response(w, HttpCodeOK, "ok", result)
 }
 
-func Failed(w http.ResponseWriter, code int, message string){
+func Failed(w http.ResponseWriter, code int, message string) {
 	response(w, code, message, nil)
 }
 
-func response(w http.ResponseWriter, code int, message string, result interface{}){
+func response(w http.ResponseWriter, code int, message string, result interface{}) {
 	r := resp{
-		Code: code,
+		Code:    code,
 		Message: message,
-		Result: result,
+		Result:  result,
 	}
 	j, err := json.Marshal(r)
 	if err != nil {

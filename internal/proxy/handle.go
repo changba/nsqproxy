@@ -2,11 +2,11 @@ package proxy
 
 import (
 	"errors"
-	"github.com/nsqio/go-nsq"
 	"github.com/ChangbaServer/nsqproxy/config"
 	"github.com/ChangbaServer/nsqproxy/internal/model"
 	"github.com/ChangbaServer/nsqproxy/internal/module/logger"
 	"github.com/ChangbaServer/nsqproxy/internal/worker"
+	"github.com/nsqio/go-nsq"
 	"strconv"
 )
 
@@ -31,20 +31,20 @@ func (h *Handler) HandleMessage(message *nsq.Message) error {
 	//根据权重选一个work
 	workServer, err := h.workerList.pickWorker()
 	if err != nil {
-		h.recordSubLog(logger.LOG_ERROR, message.ID, message.Body, workServer.WorkServer.Addr, "pick work error. " + err.Error())
+		h.recordSubLog(logger.LOG_ERROR, message.ID, message.Body, workServer.WorkServer.Addr, "pick work error. "+err.Error())
 		return err
 	}
 	h.recordSubLog(logger.LOG_DEBUG, message.ID, message.Body, workServer.WorkServer.Addr, "")
 	//初始化Worker
 	w, err := worker.NewWorker(workServer.WorkServer.Addr, workServer.WorkServer.Protocol, workServer.WorkServer.Extra, h.consumeConfig.TimeoutDial, h.consumeConfig.TimeoutWrite, h.consumeConfig.TimeoutRead)
 	if err != nil {
-		h.recordSubLog(logger.LOG_ERROR, message.ID, message.Body, workServer.WorkServer.Addr, "new worker error. " + err.Error())
+		h.recordSubLog(logger.LOG_ERROR, message.ID, message.Body, workServer.WorkServer.Addr, "new worker error. "+err.Error())
 		return err
 	}
 	//向Worker发送数据
 	response, err := w.Send(message)
 	if err != nil {
-		h.recordSubLog(logger.LOG_ERROR, message.ID, message.Body, workServer.WorkServer.Addr, "send worker error. " + err.Error())
+		h.recordSubLog(logger.LOG_ERROR, message.ID, message.Body, workServer.WorkServer.Addr, "send worker error. "+err.Error())
 		if h.isRequeueByError(err) {
 			return err
 		}
@@ -78,9 +78,9 @@ func (h *Handler) HandleMessage(message *nsq.Message) error {
 //是否重新入队，根据error类型和配置决定
 //连不上worker直接重新入队，write失败直接重新入队，read失败根据配置决定是否重新入队
 func (h *Handler) isRequeueByError(err error) bool {
-	if worker.IsErrorConnect(err){
+	if worker.IsErrorConnect(err) {
 		return true
-	} else if worker.IsErrorWrite(err){
+	} else if worker.IsErrorWrite(err) {
 		return true
 	} else if worker.IsErrorRead(err) && h.consumeConfig.IsRequeue {
 		return true
@@ -96,10 +96,10 @@ func (h *Handler) LogFailedMessage(message nsq.Message) {
 
 //封装写log方法，上面代码太啰嗦
 func (h *Handler) recordSubLog(logLevel logger.LogLevel, messageId nsq.MessageID, messageBody []byte, workAddr, errMsg string) {
-	if len(workAddr) <= 0{
+	if len(workAddr) <= 0 {
 		workAddr = "null"
 	}
-	if len(errMsg) <= 0{
+	if len(errMsg) <= 0 {
 		errMsg = "nil"
 	}
 	config.SystemConfig.SubLogger.WithLevelf(logLevel, "[%s/%s] nsqproxy %s %s messageid:%s messagebody:%s",
