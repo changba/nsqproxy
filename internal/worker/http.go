@@ -1,0 +1,51 @@
+package worker
+
+import (
+	"errors"
+	"github.com/nsqio/go-nsq"
+	"github.com/ChangbaServer/nsqproxy/internal/module/tool"
+	"io/ioutil"
+	"net/http"
+	"strings"
+)
+
+type HTTPWorker struct {
+	workerConfig workerConfig
+	clientPool *tool.HttpClientPool
+}
+
+func (w *HTTPWorker) new(wc workerConfig){
+	w.workerConfig = wc
+	w.clientPool = tool.NewHttpClientPool()
+}
+
+//给HTTP发消息
+func (w *HTTPWorker) Send(message *nsq.Message) ([]byte, error) {
+	//构造HTTP请求
+	//values := url.Values{}
+	//values.Set("param", string(message.Body))
+	req, err := http.NewRequest("POST", "http://" + w.workerConfig.addr + "/" + w.workerConfig.extra, strings.NewReader(string(message.Body)))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("MESSAGE-ID", string(message.ID[:]))
+	req.Header.Set("CONTENT-TYPE", "application/x-www-form-urlencoded")
+	//获取http.Client
+	client := w.clientPool.GetClient()
+	if client == nil{
+		return nil, errors.New("HttpClientPool.GetClient is nil")
+	}
+	defer w.clientPool.PutClient(client)
+	client.Timeout = w.workerConfig.timeoutDial
+	//发送请求
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, newWorkerErrorWrite(err)
+	}
+	defer resp.Body.Close()
+	content, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, newWorkerErrorRead(err)
+	}
+	return content, nil
+}
