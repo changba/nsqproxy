@@ -77,7 +77,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 ### 接口文档
 * 通过接口对数据库增删改查：[查看接口文档](document/api/index.md)
-* 通过接口对数据库增删改查：[查看接口文档](document/protocol/index.md)
+* 通过接口对数据库增删改查：[查看协议文档](document/protocol/index.md)
 
 ## TODO LIST
 
