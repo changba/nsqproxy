@@ -45,7 +45,7 @@ statik:
 .PHONY: vue-build
 vue-build:
 	cd web/vue-admin && npm run build:prod
-	cp -r web/vue-admin/dist/* web/public/
+	mkdir web/public && cp -r web/vue-admin/dist/* web/public/
 
 .PHONY: vue-install
 vue-install:
