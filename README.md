@@ -50,9 +50,9 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 #### 源码安装
 
 * 要求Go1.11及以上
-* 下载本项目
-* `go get github.com/ChangbaServer/nsqproxy`
+* 下载本项目 `go get github.com/ChangbaServer/nsqproxy`
 * `cd nsqproxy`
+* `export GO111MODULE=on`
 * `make build`
 * `./bin/nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
 * 命令行 `curl http://0.0.0.0:19421/status` 输出ok
