@@ -42,9 +42,6 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 `-dbName string` Mysql的库名 (default "nsqproxy")
 
-### 接口文档
-通过接口对数据库增删改查：[API.md](document/api/API.md)
-
 ### make命令
 
 `make build` 编译为golang程序，编译后的可执行文件在bin/目录
@@ -77,6 +74,9 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 * make vue-install（如果国内被墙可以使用淘宝的源进行安装：make vue-install-taobao）
 * make vue-build
 * make statik
+
+### 接口文档
+通过接口对数据库增删改查：[查看接口文档](document/api/index.md)
 
 ## TODO LIST
 

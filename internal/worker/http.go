@@ -2,8 +2,8 @@ package worker
 
 import (
 	"errors"
-	"github.com/nsqio/go-nsq"
 	"github.com/ChangbaServer/nsqproxy/internal/module/tool"
+	"github.com/nsqio/go-nsq"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -28,6 +28,8 @@ func (w *HTTPWorker) Send(message *nsq.Message) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	//含下划线会被nginx抛弃，横线会被转为下划线。
+	req.Header.Set("MESSAGE_ID", string(message.ID[:]))
 	req.Header.Set("MESSAGE-ID", string(message.ID[:]))
 	req.Header.Set("CONTENT-TYPE", "application/x-www-form-urlencoded")
 	//获取http.Client
