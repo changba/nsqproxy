@@ -1,15 +1,10 @@
 # NSQ Proxy
 NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配置，负责消息转发。NSQProxy启动后，接受NSQD队列内容，然后通过HTTP/FastCGI/CBNSQ等协议转发给Worker机执行。
 
+[![go report card](https://goreportcard.com/badge/github.com/ChangbaServer/nsqproxy "go report card")](https://goreportcard.com/report/github.com/ChangbaServer/nsqproxy)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/ChangbaServer/nsqproxy/blob/master/LICENSE)
-
 [![Downloads](https://img.shields.io/github/downloads/ChangbaServer/nsqproxy/total.svg)](https://github.com/ChangbaServer/nsqproxy/releases)
 [![Release](https://img.shields.io/github/release/ChangbaServer/nsqproxy.svg?label=Release)](https://github.com/ChangbaServer/nsqproxy/releases)
-
-[![go report card](https://goreportcard.com/badge/github.com/ChangbaServer/nsqproxy "go report card")](https://goreportcard.com/report/github.com/ChangbaServer/nsqproxy)
-[![test status](https://github.com/ChangbaServer/nsqproxy/workflows/tests/badge.svg?branch=main "test status")](https://github.com/ChangbaServer/nsqproxy/actions)
-[![Open Collective Backer](https://opencollective.com/nsqproxy/tiers/backer/badge.svg?label=backer&color=brightgreen "Open Collective Backer")](https://opencollective.com/nsqproxy)
-[![Open Collective Sponsor](https://opencollective.com/nsqproxy/tiers/sponsor/badge.svg?label=sponsor&color=brightgreen "Open Collective Sponsor")](https://opencollective.com/nsqproxy)
 
 ## 解决的问题
 
