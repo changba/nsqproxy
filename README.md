@@ -1,7 +1,25 @@
 # NSQ Proxy
 NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配置，负责消息转发。NSQProxy启动后，接受NSQD队列内容，然后通过HTTP/FastCGI/CBNSQ等协议转发给Worker机执行。
 
-<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/nsqproxy_flow_chart.jpg" alt="流程图">
+## 解决的问题
+
+* 各Topic执行机器可配
+* 各Topic消费速度可配
+* 各Worker机协议可配
+    * HTTP：将消息发送给配好的URL。
+    * FastCGI：将消费发送给配置的服务端，如PHP-FPM。
+    * CBNSQ：自定义的基于TCP的文本协议。
+* 可视化界面管理
+* 队列积压超出阈值报警
+* 散乱在各处的消费者集中化管理
+
+## 有图有真相
+
+<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/nsqproxy_flow_chart.png" alt="流程图">
+
+<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/admin_consume_config.png" alt="消费者管理">
+
+<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/admin_work_server.png" alt="worker机管理">
 
 ## 使用
 
