@@ -19,6 +19,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 * 散乱在各处的消费者集中化管理
 * 通过网络分发，无需安装.so等扩展库，因此无需修改线上环境
 
+
 ## 有图有真相
 
 <img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/nsqproxy_flow_chart.png" alt="流程图">
@@ -28,14 +29,32 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 <img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/admin_work_server.png" alt="worker机管理">
 
 ## 使用
+请先部署好NSQLookupd、NSQd、MySQL
+
+> nsqlookupd -broadcast-address="0.0.0.0" -http-address="0.0.0.0:4161" -tcp-address="0.0.0.0:4160"
+
+> nsqd -broadcast-address="0.0.0.0" -lookupd-tcp-address="0.0.0.0:4160" -tcp-address="0.0.0.0:4150" -http-address="0.0.0.0:4151"
+
+> 启动Mysql
 
 ### 安装
+
+#### 二进制安装
+
+* 下载最新版本的压缩包 https://github.com/ChangbaServer/nsqproxy/releases
+* 解压
+* 启动 `./nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161` 注意替换为自己的Mysql信息
+* 命令行 `curl http://0.0.0.0:19421/status` 输出ok
+* 浏览器打开 http://0.0.0.0:19421/admin
+
+#### 源码安装
 
 * 要求Go1.11及以上
 * 下载本项目
 * `go get github.com/ChangbaServer/nsqproxy`
 * `cd nsqproxy`
-* `go run cmd/nsqproxy.go -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
+* `make build`
+* `./bin/nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
 * 命令行 `curl http://0.0.0.0:19421/status` 输出ok
 * 浏览器打开 http://0.0.0.0:19421/admin
 
