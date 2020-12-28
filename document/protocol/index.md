@@ -1,6 +1,6 @@
 ### 协议
 
-讲述NSQProxy推送给Worker所用协议
+NSQProxy推送给Worker时可用协议
 
 - HTTP：[HTTP](http.md)
 

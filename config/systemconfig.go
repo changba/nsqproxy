@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const NsqproxyVersion = "2.0.0"
+const NsqproxyVersion = "1.0.0"
 
 const RoleMaster = "master"
 const RoleBackup = "backup"
