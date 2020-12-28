@@ -1,7 +1,7 @@
 # NSQ Proxy
 NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配置，负责消息转发。NSQProxy启动后，接受NSQD队列内容，然后通过HTTP/FastCGI/CBNSQ等协议转发给Worker机执行。
 
-<img src="http://github.com/ChangbaServer/nsqproxy/raw/5acdfe4d08a22312d6e122e9148399564dd5bff8/assets/images/nsqproxy_flow_chart.jpg" alt="流程图">
+<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/nsqproxy_flow_chart.jpg" alt="流程图">
 
 ## 使用
 
@@ -9,10 +9,10 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 * 要求Go1.11及以上
 * 下载本项目
-* go get github.com/ChangbaServer/nsqproxy
-* cd nsqproxy
-* go run cmd/nsqproxy.go -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161
-* 命令行 curl http://0.0.0.0:19421/status 输出ok
+* `go get github.com/ChangbaServer/nsqproxy`
+* `cd nsqproxy`
+* `go run cmd/nsqproxy.go -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
+* 命令行 `curl http://0.0.0.0:19421/status` 输出ok
 * 浏览器打开 http://0.0.0.0:19421/admin
 
 ### 启动参数
