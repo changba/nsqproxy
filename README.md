@@ -49,7 +49,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 #### 源码安装
 
-* 要求Go1.11及以上
+* 要求Go1.13及以上
 * 下载本项目 `go get github.com/ChangbaServer/nsqproxy`
 * `cd nsqproxy`
 * `export GO111MODULE=on`
@@ -103,11 +103,13 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 `make statik` 将静态资源文件编译成go文件。即statik -src=web/public/ -dest=internal -f
 
-`make vue-build` 将VUE文件编译打包并复制到web/public/目录下
-
 `make vue-install` 安装VUE，即npm install
 
 `make vue-install-taobao` 同make vue-install，使用淘宝的源进行安装，防止官方源被墙
+
+`make vue-build` 将VUE文件编译打包并复制到web/public/目录下
+
+`make vue-dev` 将VUE文件编译打包并复制到web/public/目录下
 
 ## 二次开发
 
