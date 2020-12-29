@@ -22,7 +22,7 @@ export function create(params) {
     url: './api/workServer/create',
     method: 'get',
     data: {
-      ...params,
+      ...params
     }
   })
 }
@@ -32,7 +32,7 @@ export function update(params) {
     url: './api/workServer/update',
     method: 'get',
     data: {
-      ...params,
+      ...params
     }
   })
 }
@@ -42,7 +42,7 @@ export function deleteAction(params) {
     url: './api/workServer/delete',
     method: 'get',
     data: {
-      ...params,
+      ...params
     }
   })
 }

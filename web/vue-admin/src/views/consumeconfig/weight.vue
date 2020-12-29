@@ -119,7 +119,7 @@ export default {
     statusFilter(val) {
       return val === 0 ? '有效' : '无效'
     },
-    format(val){
+    format(val) {
       return moment(val).format('YYYY-MM-DD hh:mm:ss')
     }
   },
@@ -168,11 +168,11 @@ export default {
     }
   },
   methods: {
-    handleCancel(){
-      this.dialogFormVisible=false
+    handleCancel() {
+      this.dialogFormVisible = false
       this.resetTemp()
     },
-    handleClose(done){
+    handleClose(done) {
       this.resetTemp()
       done()
     },
@@ -200,9 +200,9 @@ export default {
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
 
-      this.$delete(this.temp,'createdAt')
-      this.$delete(this.temp,'updatedAt')
-      this.$delete(this.temp,'workServer')
+      this.$delete(this.temp, 'createdAt')
+      this.$delete(this.temp, 'updatedAt')
+      this.$delete(this.temp, 'workServer')
       // console.log(JSON.stringify(this.temp))
 
       this.$nextTick(() => {
@@ -255,7 +255,7 @@ export default {
             })
             this.getList()
           }).catch(error => {
-            this.dialogFormVisible =false
+            this.dialogFormVisible = false
             console.log(error)
           })
         }

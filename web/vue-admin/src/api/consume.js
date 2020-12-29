@@ -13,7 +13,7 @@ export function create(params) {
     url: './api/consumeConfig/create',
     method: 'get',
     data: {
-      ...params,
+      ...params
     }
   })
 }
@@ -23,7 +23,7 @@ export function update(params) {
     url: './api/consumeConfig/update',
     method: 'get',
     data: {
-      ...params,
+      ...params
     }
   })
 }

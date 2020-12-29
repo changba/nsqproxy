@@ -242,8 +242,8 @@ export default {
     handleUpdate(row) {
       this.temp = Object.assign({}, row)
 
-      this.$delete(this.temp,'createdAt')
-      this.$delete(this.temp,'updatedAt')
+      this.$delete(this.temp, 'createdAt')
+      this.$delete(this.temp, 'updatedAt')
 
       console.log(JSON.stringify(this.temp))
 

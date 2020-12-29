@@ -183,9 +183,9 @@ export default {
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row)
-      
-      this.$delete(this.temp,'createdAt')
-      this.$delete(this.temp,'updatedAt')
+
+      this.$delete(this.temp, 'createdAt')
+      this.$delete(this.temp, 'updatedAt')
 
       console.log(JSON.stringify(this.temp))
       this.dialogStatus = 'update'
@@ -213,7 +213,7 @@ export default {
     },
     getList() {
       this.listLoading = true
-      getList({'page':this.search.page}).then(response => {
+      getList({ 'page': this.search.page }).then(response => {
         this.listLoading = false
         this.list = response.result.result
         this.search.page = response.result.page
