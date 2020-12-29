@@ -52,7 +52,6 @@ func NewHttpClient() *http.Client {
 				KeepAlive: 30 * time.Second,
 				DualStack: true,
 			}).DialContext,
-			ForceAttemptHTTP2:     true,
 			MaxIdleConns:          500,
 			IdleConnTimeout:       90 * time.Second,
 			TLSHandshakeTimeout:   10 * time.Second,
