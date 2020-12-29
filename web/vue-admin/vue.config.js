@@ -30,16 +30,8 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/admin/api/consumeConfig': {
-        target: 'http://10.10.248.110:19421',
-        changeOrigin: true
-      },
-      '/admin/api/consumeServerMap': {
-        target: 'http://10.10.248.110:19421',
-        changeOrigin: true
-      },
-      '/admin/api/workServer': {
-        target: 'http://10.10.248.110:19421',
+      '/admin/api': {
+        target: 'http://localhost:19421',
         changeOrigin: true
       }
     }
@@ -86,7 +78,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()
