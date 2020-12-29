@@ -30,16 +30,8 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/admin/api/consumeConfig': {
-        target: 'http://10.10.248.110:19421',
-        changeOrigin: true
-      },
-      '/admin/api/consumeServerMap': {
-        target: 'http://10.10.248.110:19421',
-        changeOrigin: true
-      },
-      '/admin/api/workServer': {
-        target: 'http://10.10.248.110:19421',
+      '/admin/api': {
+        target: 'http://localhost:19421',
         changeOrigin: true
       }
     }
