@@ -17,13 +17,13 @@ build-linux:
 
 .PHONY: build-all
 build-all:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/$(filename)-linux-$(nowDate) cmd/nsqproxy.go
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/$(filename)-darwin-$(nowDate) cmd/nsqproxy.go
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o bin/$(filename)-windows-$(nowDate) cmd/nsqproxy.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/$(filename)-linux-amd64-$(nowDate) cmd/nsqproxy.go
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/$(filename)-darwin-amd64-$(nowDate) cmd/nsqproxy.go
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o bin/$(filename)-windows-amd64-$(nowDate) cmd/nsqproxy.go
 
 .PHONY: clean
 clean:
-	rm bin/nsqproxy*
+	rm -rf bin/nsqproxy*
 
 .PHONY: kill
 kill:
