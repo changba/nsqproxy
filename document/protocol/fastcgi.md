@@ -1,4 +1,4 @@
-### FastCGI 协议
+## FastCGI 协议
 
 - 协议描述
 
@@ -10,7 +10,7 @@
 消息正文：在POST请求中。
 ```
 
-##### PHP使用示例
+### PHP使用示例
 
 ```php
 //MESSAGE_ID

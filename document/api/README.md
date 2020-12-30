@@ -10,11 +10,9 @@
 
 ## 服务相关
 
-- 查看状态：[service/status](service/status.md)
-
-- 查看角色：[service/getrole](service/getrole.md)
-
-- pprof：[debug/pprof](debug/pprof.md)
+* 查看状态：[service/status](service/status.md)
+* 查看角色：[service/getrole](service/getrole.md)
+* pprof：[debug/pprof](debug/pprof.md)
 
 ## 后台相关
 

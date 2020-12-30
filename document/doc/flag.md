@@ -1,7 +1,8 @@
 # 启动参数 一览
 
 > 启动时命令行可以传入的参数，所有的参数都有默认值。
-> `./bin/nsqproxy` -h 也可查看
+
+> `./bin/nsqproxy -h` 也可查看
 
 * NSQProxy相关部分
     * `-httpAddr string` 监听的HTTP端口 (default "0.0.0.0:19421")

@@ -1,4 +1,4 @@
-### CBNSQ 协议
+## CBNSQ 协议
 
 - 协议描述
 
@@ -17,7 +17,7 @@
 消息正文：消息体（从0开始）的第24位到[消息长度]，[消息长度]为消息体的第0位到第7位。
 ```
 
-##### PHP使用示例
+### PHP使用示例
 
 ```php
 <?php
@@ -35,7 +35,7 @@ $messageId = substr($msg, 8, 16);
 $body = substr($msg, 8+16, $length);
 ```
 
-##### MeepoPS使用示例
+### MeepoPS使用示例
 
 [MeepoPS](https://github.com/lixuancn/MeepoPS) 是PHP的服务端程序，监听端口后，与客户端进行通信。支持CBNSQ协议。
 
