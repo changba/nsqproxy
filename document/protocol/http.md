@@ -1,4 +1,4 @@
-### HTTP 协议
+## HTTP 协议
 
 - 协议描述
 
@@ -9,7 +9,7 @@
 消息正文：在POST请求中。
 ```
 
-##### PHP使用示例
+### PHP使用示例
 
 ```php
 //MESSAGE_ID
@@ -21,7 +21,7 @@ $_POST;
 file_get_contents("php://input");
 ```
 
-##### Golang使用示例
+### Golang使用示例
 
 ```golang
 //MESSAGE_ID

@@ -29,6 +29,16 @@
           {{ scope.row.workServer.addr }}
         </template>
       </el-table-column>
+      <el-table-column label="协议">
+        <template slot-scope="scope">
+          {{ scope.row.workServer.protocol }}
+        </template>
+      </el-table-column>
+      <el-table-column label="扩展">
+        <template slot-scope="scope">
+          {{ scope.row.workServer.extra }}
+        </template>
+      </el-table-column>
       <el-table-column label="描述">
         <template slot-scope="scope">
           {{ scope.row.workServer.description }}

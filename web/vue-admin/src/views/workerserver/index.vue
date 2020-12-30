@@ -23,6 +23,16 @@
           {{ scope.row.addr }}
         </template>
       </el-table-column>
+      <el-table-column label="协议">
+        <template slot-scope="scope">
+          {{ scope.row.protocol }}
+        </template>
+      </el-table-column>
+      <el-table-column label="扩展">
+        <template slot-scope="scope">
+          {{ scope.row.extra }}
+        </template>
+      </el-table-column>
       <el-table-column label="描述">
         <template slot-scope="scope">
           <span>{{ scope.row.description }}</span>
