@@ -22,6 +22,12 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 ## 有图有真相
 
+![Image text](https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/nsqproxy_flow_chart.png)
+
+![image](https://github.com/changba-server/nsqproxy/blob/main/assets/images/admin_consume_config.png)
+
+![worker机管理](assets/images/admin_work_server.png)
+
 <img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/nsqproxy_flow_chart.png" alt="流程图">
 
 <img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/admin_consume_config.png" alt="消费者管理">
