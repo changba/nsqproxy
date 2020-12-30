@@ -66,15 +66,15 @@ func main() {
 
 1、添加Worker机
 
-<img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/quick_start_add_work_server.png" alt="添加Worker机">
+![添加Worker机](../../assets/images/quick_start_add_work_server.png)
 
 2、添加新消费者配置
 
-<img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/quick_start_add_consume_config.png" alt="添加新消费者配置">
+![添加新消费者配置](../../assets/images/quick_start_add_consume_config.png)
 
 3、把消费者和Worker机关联起来
 
-<img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/quick_start_add_consume_server_map.png" alt="把消费者和Worker机关联起来">
+![把消费者和Worker机关联起来](../../assets/images/quick_start_add_consume_server_map.png)
 
 ## 具体示例
 
