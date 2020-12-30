@@ -42,11 +42,6 @@ statik:
 	go get github.com/rakyll/statik
 	go generate ./...
 
-.PHONY: vue-build
-vue-build:
-	cd web/vue-admin && npm run build:prod
-	mkdir web/public && cp -r web/vue-admin/dist/* web/public/
-
 .PHONY: vue-install
 vue-install:
 	cd web/vue-admin && npm install
@@ -54,3 +49,12 @@ vue-install:
 .PHONY: vue-install-taobao
 vue-install-taobao:
 	cd web/vue-admin && npm install --registry=https://registry.npm.taobao.org
+
+.PHONY: vue-build
+vue-build:
+	cd web/vue-admin && npm run build:prod
+	mkdir -p web/public && cp -r web/vue-admin/dist/* web/public/
+
+.PHONY: vue-dev
+vue-dev:
+	cd web/vue-admin && yarn run dev
