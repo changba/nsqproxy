@@ -18,15 +18,14 @@
 
 ### 服务器管理
 
-- 新增：[admin/api/workServer/create](admin/api/workserver/create.md)
+* 新增：[admin/api/workServer/create](admin/api/workserver/create.md)
+* 修改：[admin/api/workServer/update](admin/api/workserver/update.md)
 
-- 修改：[admin/api/workServer/update](admin/api/workserver/update.md)
+* 删除一个：[admin/api/workServer/delete](admin/api/workserver/delete.md)
 
-- 删除一个：[admin/api/workServer/delete](admin/api/workserver/delete.md)
+* 查询一个：[admin/api/workServer/get](admin/api/workserver/get.md)
 
-- 查询一个：[admin/api/workServer/get](admin/api/workserver/get.md)
-
-- 查询所有：[admin/api/workServer/page](admin/api/workserver/page.md)
+* 查询所有：[admin/api/workServer/page](admin/api/workserver/page.md)
 
 ### 消费者管理
 
