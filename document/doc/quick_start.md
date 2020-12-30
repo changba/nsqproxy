@@ -12,10 +12,10 @@ NSQProxy是 队列NSQ 和 消费者 之间的桥梁。负责将 队列中的任�
 > 本文档以HTTP作为通信协议，编写一个go代码作为消费者。
 
 ## 启动依赖
-NSQProxy是一个中间转发器，因此需要上下游依赖，尽管没有依赖时也可以正常启动。
+NSQProxy是一个中间转发器，因此需要上下游依赖。
 
 #### 依赖NSQ
-NSQ是真正的队列服务，因此NSQProxy的上游是NSQ。NSQ会将任务下发给NSQProxy，站在NSQ的视角中，NSQProxy是一个真正的消费者。
+NSQ是队列服务，因此NSQProxy的上游是NSQ。NSQ会将任务下发给NSQProxy，站在NSQ的视角中，NSQProxy是它的消费者。
 
 * 启动NSQLookupd `nsqlookupd -broadcast-address="0.0.0.0" -http-address="0.0.0.0:4161" -tcp-address="0.0.0.0:4160"`
 * 启动NSQD `nsqd -broadcast-address="0.0.0.0" -lookupd-tcp-address="0.0.0.0:4160" -tcp-address="0.0.0.0:4150" -http-address="0.0.0.0:4151"`
