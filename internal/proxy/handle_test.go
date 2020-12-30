@@ -1,7 +1,7 @@
 package proxy
 
 import (
-	"github.com/ChangbaServer/nsqproxy/internal/model"
+	"github.com/changba-server/nsqproxy/internal/model"
 	"testing"
 )
 

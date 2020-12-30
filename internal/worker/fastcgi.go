@@ -2,8 +2,8 @@ package worker
 
 import (
 	"bytes"
-	"github.com/ChangbaServer/nsqproxy/config"
-	"github.com/ChangbaServer/nsqproxy/internal/module/fastcgi"
+	"github.com/changba-server/nsqproxy/config"
+	"github.com/changba-server/nsqproxy/internal/module/fastcgi"
 	"github.com/nsqio/go-nsq"
 	"io/ioutil"
 )

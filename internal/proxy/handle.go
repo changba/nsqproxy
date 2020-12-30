@@ -2,10 +2,10 @@ package proxy
 
 import (
 	"errors"
-	"github.com/ChangbaServer/nsqproxy/config"
-	"github.com/ChangbaServer/nsqproxy/internal/model"
-	"github.com/ChangbaServer/nsqproxy/internal/module/logger"
-	"github.com/ChangbaServer/nsqproxy/internal/worker"
+	"github.com/changba-server/nsqproxy/config"
+	"github.com/changba-server/nsqproxy/internal/model"
+	"github.com/changba-server/nsqproxy/internal/module/logger"
+	"github.com/changba-server/nsqproxy/internal/worker"
 	"github.com/nsqio/go-nsq"
 	"strconv"
 )

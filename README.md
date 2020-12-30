@@ -1,10 +1,10 @@
 # NSQ Proxy
 NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配置，负责消息转发。NSQProxy启动后，接受NSQD队列内容，然后通过HTTP/FastCGI/CBNSQ等协议转发给Worker机执行。在唱吧内部使用2年，高效稳定的处理着每日数十亿条消息。
 
-[![go report card](https://goreportcard.com/badge/github.com/ChangbaServer/nsqproxy "go report card")](https://goreportcard.com/report/github.com/ChangbaServer/nsqproxy)
-[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/ChangbaServer/nsqproxy/blob/master/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/ChangbaServer/nsqproxy/total.svg)](https://github.com/ChangbaServer/nsqproxy/releases)
-[![Release](https://img.shields.io/github/release/ChangbaServer/nsqproxy.svg?label=Release)](https://github.com/ChangbaServer/nsqproxy/releases)
+[![go report card](https://goreportcard.com/badge/github.com/changba-server/nsqproxy "go report card")](https://goreportcard.com/report/github.com/changba-server/nsqproxy)
+[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/changba-server/nsqproxy/blob/master/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/changba-server/nsqproxy/total.svg)](https://github.com/changba-server/nsqproxy/releases)
+[![Release](https://img.shields.io/github/release/changba-server/nsqproxy.svg?label=Release)](https://github.com/changba-server/nsqproxy/releases)
 
 ## 解决的问题
 
@@ -22,11 +22,11 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 ## 有图有真相
 
-<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/nsqproxy_flow_chart.png" alt="流程图">
+<img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/nsqproxy_flow_chart.png" alt="流程图">
 
-<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/admin_consume_config.png" alt="消费者管理">
+<img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/admin_consume_config.png" alt="消费者管理">
 
-<img src="https://raw.githubusercontent.com/ChangbaServer/nsqproxy/main/assets/images/admin_work_server.png" alt="worker机管理">
+<img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/admin_work_server.png" alt="worker机管理">
 
 ## 使用
 请先部署好NSQLookupd、NSQd、MySQL
@@ -41,7 +41,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 #### 二进制安装
 
-* 下载最新版本的压缩包 https://github.com/ChangbaServer/nsqproxy/releases
+* 下载最新版本的压缩包 https://github.com/changba-server/nsqproxy/releases
 * 解压
 * 启动（注意替换为自己的MySQL信息） `./nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
 * 命令行 `curl http://0.0.0.0:19421/status` 输出ok
@@ -50,7 +50,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 #### 源码安装
 
 * 要求Go1.13及以上
-* 下载本项目 `go get github.com/ChangbaServer/nsqproxy`
+* 下载本项目 `go get github.com/changba-server/nsqproxy`
 * `cd nsqproxy`
 * `export GO111MODULE=on`
 * 编译 `make build`
@@ -94,4 +94,4 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 © [Changba.com](https://changba.com), 2020~time.Now
 
-Released under the [MIT License](https://github.com/ChangbaServer/nsqproxy/blob/main/LICENSE)
+Released under the [MIT License](https://github.com/changba-server/nsqproxy/blob/main/LICENSE)

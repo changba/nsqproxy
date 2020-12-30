@@ -1,7 +1,7 @@
 package httper
 
 import (
-	"github.com/ChangbaServer/nsqproxy/config"
+	"github.com/changba-server/nsqproxy/config"
 	"net/http"
 )
 

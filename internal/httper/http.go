@@ -1,7 +1,7 @@
 package httper
 
 import (
-	_ "github.com/ChangbaServer/nsqproxy/internal/statik"
+	_ "github.com/changba-server/nsqproxy/internal/statik"
 	"github.com/rakyll/statik/fs"
 	"net/http"
 	_ "net/http/pprof"

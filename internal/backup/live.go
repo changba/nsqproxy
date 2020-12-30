@@ -2,7 +2,7 @@ package backup
 
 import (
 	"encoding/json"
-	"github.com/ChangbaServer/nsqproxy/internal/module/logger"
+	"github.com/changba-server/nsqproxy/internal/module/logger"
 	"io/ioutil"
 	"net/http"
 	"time"

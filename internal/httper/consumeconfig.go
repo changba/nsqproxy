@@ -1,7 +1,7 @@
 package httper
 
 import (
-	"github.com/ChangbaServer/nsqproxy/internal/model"
+	"github.com/changba-server/nsqproxy/internal/model"
 	"net/http"
 	"strconv"
 	"time"
