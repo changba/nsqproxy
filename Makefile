@@ -35,7 +35,7 @@ test:
 
 .PHONY: run
 run: build kill
-	./bin/nsqproxy &
+	nohup ./bin/nsqproxy &
 
 .PHONY: statik
 statik:

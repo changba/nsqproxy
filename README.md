@@ -12,7 +12,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 * 各Topic消费速度可配
 * 各Worker机协议可配
     * HTTP：将消息发送给配好的URL。
-    * FastCGI：将消费发送给配置的服务端，如PHP-FPM。
+    * FastCGI：将消息发送给配置的服务端，如PHP-FPM。
     * CBNSQ：自定义的基于TCP的文本协议。
 * 可视化界面管理
 * 队列积压超出阈值报警
@@ -35,7 +35,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 > 启动NSQD `nsqd -broadcast-address="0.0.0.0" -lookupd-tcp-address="0.0.0.0:4160" -tcp-address="0.0.0.0:4150" -http-address="0.0.0.0:4151"`
 
-> 启动Mysql
+> 启动MySQL
 
 ### 安装
 
@@ -43,7 +43,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 
 * 下载最新版本的压缩包 https://github.com/ChangbaServer/nsqproxy/releases
 * 解压
-* 启动（注意替换为自己的Mysql信息） `./nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
+* 启动（注意替换为自己的MySQL信息） `./nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
 * 命令行 `curl http://0.0.0.0:19421/status` 输出ok
 * 浏览器打开 http://0.0.0.0:19421/admin
 
@@ -54,7 +54,7 @@ NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配�
 * `cd nsqproxy`
 * `export GO111MODULE=on`
 * 编译 `make build`
-* 启动（注意替换为自己的Mysql信息） `./bin/nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
+* 启动（注意替换为自己的MySQL信息） `./bin/nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
 * 命令行 `curl http://0.0.0.0:19421/status` 输出ok
 * 浏览器打开 http://0.0.0.0:19421/admin
 

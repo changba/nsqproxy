@@ -10,12 +10,12 @@
     * `-logLevel string` 日志等级，可选有debug、info、warning、error、fatal (default "info")
     * `-logPath string` 系统日志路径 (default "logs/proxy.log")
     * `-subLogPath string` 消费log，消费详情由于量大成功消费log仅在日志等级为debug时启用 (default "logs/sub.log")
-    * `-updateConfigInterval int` 定时向Mysql更新消费者配置的间隔时间，单位秒 (default 60)
+    * `-updateConfigInterval int` 定时向MySQL更新消费者配置的间隔时间，单位秒 (default 60)。MySQL中记录变更后，不会主动推送给NSQProxy，而是NSQProxy启动定时器定时同步。
 * NSQ相关部分
     * `-nsqlookupdHTTP string` nsqLookupd的HTTP地址，多个用逗号分割如"127.0.0.1:4161,127.0.0.1:4163" (default "127.0.0.1:4161")
-* Mysql相关部分
-    * `-dbHost string` Mysql的IP (default "127.0.0.1")
-    * `-dbPort string` Mysql的端口 (default "3306")
-    * `-dbPassword string` Mysql的密码 (default "")
-    * `-dbUsername string` Mysql的账号 (default "root")
-    * `-dbName string` Mysql的库名 (default "nsqproxy")
+* MySQL相关部分
+    * `-dbHost string` MySQL的IP (default "127.0.0.1")
+    * `-dbPort string` MySQL的端口 (default "3306")
+    * `-dbPassword string` MySQL的密码 (default "")
+    * `-dbUsername string` MySQL的账号 (default "root")
+    * `-dbName string` MySQL的库名 (default "nsqproxy")

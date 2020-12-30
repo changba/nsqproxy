@@ -57,12 +57,12 @@ func NewSystemConfig() {
 	var logLevel = flag.String("logLevel", "info", "日志等级，可选有debug、info、warning、error、fatal")
 	var logPath = flag.String("logPath", "logs/proxy.log", "系统日志路径")
 	var subLogPath = flag.String("subLogPath", "logs/sub.log", "消费log，由于量大成功消费log仅在日志等级为debug时启用")
-	//mysql
-	var dbHost = flag.String("dbHost", "127.0.0.1", "Mysql的IP")
-	var dbPort = flag.String("dbPort", "3306", "Mysql的端口")
-	var dbUsername = flag.String("dbUsername", "root", "Mysql的账号")
-	var dbPassword = flag.String("dbPassword", "", "Mysql的密码")
-	var dbName = flag.String("dbName", "nsqproxy", "Mysql的库名")
+	//MySQL
+	var dbHost = flag.String("dbHost", "127.0.0.1", "MySQL的IP")
+	var dbPort = flag.String("dbPort", "3306", "MySQL的端口")
+	var dbUsername = flag.String("dbUsername", "root", "MySQL的账号")
+	var dbPassword = flag.String("dbPassword", "", "MySQL的密码")
+	var dbName = flag.String("dbName", "nsqproxy", "MySQL的库名")
 	//消费者相关
 	var updateConfigInterval = flag.Int64("updateConfigInterval", 60, "更新配置间隔")
 
