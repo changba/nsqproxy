@@ -1,4 +1,4 @@
-module github.com/changba-server/nsqproxy
+module github.com/changba/nsqproxy
 
 go 1.14
 

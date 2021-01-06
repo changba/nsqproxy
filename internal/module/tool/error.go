@@ -1,7 +1,7 @@
 package tool
 
 import (
-	"github.com/changba-server/nsqproxy/internal/module/logger"
+	"github.com/changba/nsqproxy/internal/module/logger"
 	"runtime/debug"
 )
 

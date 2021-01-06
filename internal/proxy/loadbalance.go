@@ -2,7 +2,7 @@ package proxy
 
 import (
 	"errors"
-	"github.com/changba-server/nsqproxy/internal/model"
+	"github.com/changba/nsqproxy/internal/model"
 )
 
 const LoadBalanceMethodLoop = "loop"

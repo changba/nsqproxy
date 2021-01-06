@@ -2,7 +2,7 @@ package httper
 
 import (
 	"encoding/json"
-	"github.com/changba-server/nsqproxy/internal/module/logger"
+	"github.com/changba/nsqproxy/internal/module/logger"
 	"net/http"
 )
 

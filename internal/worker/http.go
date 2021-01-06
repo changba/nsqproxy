@@ -2,7 +2,7 @@ package worker
 
 import (
 	"errors"
-	"github.com/changba-server/nsqproxy/internal/module/tool"
+	"github.com/changba/nsqproxy/internal/module/tool"
 	"github.com/nsqio/go-nsq"
 	"io/ioutil"
 	"net/http"

@@ -4,13 +4,13 @@ package main
 //go:generate statik -src=../web/public/ -dest=../internal -f
 
 import (
-	"github.com/changba-server/nsqproxy/config"
-	"github.com/changba-server/nsqproxy/internal/backup"
-	"github.com/changba-server/nsqproxy/internal/httper"
-	"github.com/changba-server/nsqproxy/internal/model"
-	"github.com/changba-server/nsqproxy/internal/module/logger"
-	"github.com/changba-server/nsqproxy/internal/module/tool"
-	"github.com/changba-server/nsqproxy/internal/proxy"
+	"github.com/changba/nsqproxy/config"
+	"github.com/changba/nsqproxy/internal/backup"
+	"github.com/changba/nsqproxy/internal/httper"
+	"github.com/changba/nsqproxy/internal/model"
+	"github.com/changba/nsqproxy/internal/module/logger"
+	"github.com/changba/nsqproxy/internal/module/tool"
+	"github.com/changba/nsqproxy/internal/proxy"
 	"os"
 	"os/signal"
 	"syscall"

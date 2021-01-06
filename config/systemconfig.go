@@ -2,8 +2,8 @@ package config
 
 import (
 	"flag"
-	"github.com/changba-server/nsqproxy/internal/module/logger"
-	"github.com/changba-server/nsqproxy/internal/module/tool"
+	"github.com/changba/nsqproxy/internal/module/logger"
+	"github.com/changba/nsqproxy/internal/module/tool"
 	"strings"
 	"time"
 )

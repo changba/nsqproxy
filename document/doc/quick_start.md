@@ -28,7 +28,7 @@ MySQL中存储着各Topic/Channel的配置信息，因此NSQProxy依赖于MySQL�
 ## 下载安装
 下载并启动NSQProxy。
 
-* 下载最新版本的压缩包 https://github.com/changba-server/nsqproxy/releases
+* 下载最新版本的压缩包 https://github.com/changba/nsqproxy/releases
 * 解压
 * 启动（注意替换为自己的MySQL信息） `./nsqproxy -dbHost=127.0.0.1 -dbPort=3306 -dbUsername=root -dbPassword=rootpsd -dbName=nsqproxy -logLevel=debug -nsqlookupdHTTP=127.0.0.1:4161`
 * 命令行 `curl http://0.0.0.0:19421/status` 输出ok
@@ -84,4 +84,4 @@ func main() {
 
 2、查看刚才编写的Golang程序的输出，可以拿到消息的唯一ID和消息的内容
 
-<img src="https://raw.githubusercontent.com/changba-server/nsqproxy/main/assets/images/quick_start_demo.png" alt="具体示例">
+<img src="https://raw.githubusercontent.com/changba/nsqproxy/main/assets/images/quick_start_demo.png" alt="具体示例">
