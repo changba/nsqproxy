@@ -1,5 +1,5 @@
-# NSQ Proxy
-NSQ Proxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配置，负责消息转发。NSQProxy启动后，接受NSQD队列内容，然后通过HTTP/FastCGI/CBNSQ等协议转发给Worker机执行。在唱吧内部使用2年，高效稳定的处理着每日数十亿条消息。
+# NSQProxy
+NSQProxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配置，负责消息转发。NSQProxy启动后，接受NSQD队列内容，然后通过HTTP/FastCGI/CBNSQ等协议转发给Worker机执行。在唱吧内部使用2年，高效稳定的处理着每日数十亿条消息。
 
 [![go report card](https://goreportcard.com/badge/github.com/changba/nsqproxy "go report card")](https://goreportcard.com/report/github.com/changba/nsqproxy)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/changba/nsqproxy/blob/master/LICENSE)
