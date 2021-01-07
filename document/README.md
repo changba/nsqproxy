@@ -1,4 +1,4 @@
-# 协议
+# 文档
 
 NSQProxy推送给Worker时可用协议
 
