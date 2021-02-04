@@ -16,8 +16,9 @@ type HTTPWorker struct {
 
 func (w *HTTPWorker) new(wc workerConfig) {
 	w.workerConfig = wc
-	w.clientPool = tool.NewHttpClientPool()
 }
+
+var defaultHttpClientPool = tool.NewHttpClientPool()
 
 //给HTTP发消息
 func (w *HTTPWorker) Send(message *nsq.Message) ([]byte, error) {
@@ -33,11 +34,11 @@ func (w *HTTPWorker) Send(message *nsq.Message) ([]byte, error) {
 	req.Header.Set("MESSAGE-ID", string(message.ID[:]))
 	req.Header.Set("CONTENT-TYPE", "application/x-www-form-urlencoded")
 	//获取http.Client
-	client := w.clientPool.GetClient()
+	client := defaultHttpClientPool.GetClient()
 	if client == nil {
 		return nil, errors.New("HttpClientPool.GetClient is nil")
 	}
-	defer w.clientPool.PutClient(client)
+	defer defaultHttpClientPool.PutClient(client)
 	client.Timeout = w.workerConfig.timeoutDial
 	//发送请求
 	resp, err := client.Do(req)
