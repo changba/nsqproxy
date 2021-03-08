@@ -65,6 +65,18 @@ NSQProxy是Golang开发的NSQ和Worker之间的中间件，根据数据库配置
 * [make命令](document/doc/make.md)
 * [文档](document/doc/README.md)
 
+## 数据流转
+
+* 业务服务器通过HTTP等方式入队到NSQ。
+* NSQ推送给NSQProxy，推送速度由后台可配，如最多只支持同时推送两个消息，直到有一个消息处理完成返回结果后，再推送第三个消息。
+* NSQProxy 收到消息后，在后台的配置查找这个Topic在哪台Worker上执行（消费），并把消息通过后台配置的协议（HTTP/FastCGI/CBNSQ)发送Worker机执行。
+
+## 性能测试
+
+40核192G, Linux version 4.19.0-0.bpo.6-amd64, Debian 9.
+
+压测工具wrk 400并发： 45万QPS，CPU占70%
+
 ## 二次开发
 
 ### 前端
